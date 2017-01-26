@@ -13,6 +13,9 @@ build_needs make
 depends build_musl_cross_make_host
 build_needs "$libertine_host"-cc "$libertine_host"-gcc "$libertine_host"-ar "$libertine_host"-ld "$libertine_host"-ranlib "$libertine_host"-strip
 
+depends build_paxctl
+build_needs paxctl
+
 depends build_flex
 build_needs flex
 
@@ -23,7 +26,7 @@ depends build_busybox
 build_needs mknod find install echo mkdir rm true
 
 build_needs sed cp chmod cat
-libertine_compile_curl()
+libertine_compile_gradm()
 {
 	pushd "$(libertine_public_sourcePath)"
 		
@@ -56,7 +59,7 @@ libertine_compile_curl()
 		do
 			cp "$binary" "$outputSbinFolderPath"
 			chmod 0700 "$outputSbinFolderPath"/"$binary"
-			libertine_public_installAndStripBinariesIn sbin "$binary"
+			libertine_public_installAndStripBinaryIn sbin "$binary"
 		done
 				
 	popd
